@@ -13,16 +13,17 @@ export default function AnimatedCuteBox({animated=null,setAnimated=null}){
     const animateBox = () => {
         intervalEvent.current = setInterval(() => {
           setCurrSprite((prevSprite) => {
-            if (prevSprite >= sprites.length - 1) {
-              clearInterval(intervalEvent.current);
-              setAnimated(true);
-              return prevSprite;
-            }
             return prevSprite + 1;
           });
         }, timePerFrame);
       };
-    
+      
+      useEffect(()=>{
+        if (currSprite >= sprites.length - 1) {
+            clearInterval(intervalEvent.current);
+            setAnimated(true);
+          }
+      },[currSprite])
       useEffect(() => {
         animateBox();
         return () => {
