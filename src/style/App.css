@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+
+#main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f5f5f5;
+    position: fixed;
+    z-index: 1; 
+}
+
+.background{
+    object-fit: cover;
+    position: fixed;
+    opacity:0.45;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+.zcool-kuaile-regular {
+  font-family: "ZCOOL KuaiLe", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.boxText{
+  width: 70vw;
+  height:15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;
+}
+.boxText p{
+  text-align: center;
+}
+.boxText > p{
+  opacity: 0;
+
+  animation: fade-in 0.75s ease-in forwards;
+}
+.boxText > p + p {
+  opacity: 0;
+  animation: fade-in 0.75s 0.75s ease-in forwards;
+}
+.boxText > p + p + p{
+  opacity: 0;
+  animation: fade-in 0.75s 1.5s ease-in forwards;
+}
+
+.box{
+  width:10vw;
+  height:10vw;
+}
+.box.bigger{
+  animation: grow 0.35s ease-in-out forwards;
+}
+.box img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes fade-in {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+@keyframes grow{
+  0%{
+    transform:scale(1)
+  }
+  65%{
+    transform:scale(1.25);
+  }
+  100%{
+    transform: scale(1.2);
+  }
+}
