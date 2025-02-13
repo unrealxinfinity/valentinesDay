@@ -14,7 +14,7 @@ import Particle10 from "../assets/explosionParticles/particle10.jpg";
 import Particle11 from "../assets/explosionParticles/particle11.jpg";
 
 export default function Explosion({explode=false,anchorRef=null}){
-    const numParticles=11;
+    const numParticles=7;
     const baseRangeX = [-5,5];
     const baseRangeY = [-1,2];
     const availableAngleRange =[0,Math.PI];

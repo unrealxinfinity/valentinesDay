@@ -5,12 +5,14 @@ function isScreenMaxWidth(maxWidth) {
   }
 export default function Particle({ animate = false, setAnimateParticles = null, position = null, direction = null, canvas = null, context = null, anchorPoint = null, delay = 0, image = null }) {
   let speed = 100;
-  let gravity = 5;
+  let gravity = 9.8;
   if(isScreenMaxWidth(600)){
-    speed = 45;
+    speed = 35;
+    gravity = 5;
   }
   else if(isScreenMaxWidth(400)){
     speed = 20;
+    gravity = 2;
   }
   const [initPos, setInitPos] = useState(null);
   const [pos, setPos] = useState(position);
