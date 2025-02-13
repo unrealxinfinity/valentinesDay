@@ -4,7 +4,7 @@ import Cinnamonroll from '../assets/cinnamonroll.mp4';
 import { useReducer } from 'react';
 import TextBox from './TextBox.js'
 import CuteBox from './CuteBox.js';
-import { useCanvas,CanvasProvider } from './hooks/CanvasContext.js';
+import {CanvasProvider } from './hooks/CanvasContext.js';
 const Macros={
   
 }
