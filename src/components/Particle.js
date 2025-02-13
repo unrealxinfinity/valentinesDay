@@ -20,22 +20,23 @@ export default function Particle({ animate = false, setAnimateParticles = null, 
   const [pos, setPos] = useState(position);
   const [time, setTime] = useState(null);
 
-  function calculateNewPosition(t) {
-    const newPos = {
-      x: initPos.x + direction.x * speed * t ,
-      y: initPos.y + direction.y * speed * t + 0.5 * gravity * t * t
-    };
-    return newPos;
-  }
+  
 
   // Initialize time
   useEffect(() => {
     setTime(Date.now());
     setInitPos(position);
-  }, []);
+  }, [position]);
 
   // Handle animation
   useEffect(() => {
+    function calculateNewPosition(t) {
+      const newPos = {
+        x: initPos.x + direction.x * speed * t ,
+        y: initPos.y + direction.y * speed * t + 0.5 * gravity * t * t
+      };
+      return newPos;
+    }
     if (animate) {
       particleRef.current.style.display = "block";
       const interval = setInterval(() => {
@@ -48,7 +49,7 @@ export default function Particle({ animate = false, setAnimateParticles = null, 
       }
       return () => clearInterval(interval);
     }
-  }, [animate, time]);
+  }, [animate, time,initPos,pos,gravity,speed,direction]);
   
 
   return (

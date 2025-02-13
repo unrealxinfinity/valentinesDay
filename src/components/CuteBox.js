@@ -1,5 +1,5 @@
 import Box0 from '../assets/giftbox0.png';
-import { useState,useEffect,useRef} from 'react';
+import { useState,useRef} from 'react';
 import AnimatedCuteBox from './AnimatedCuteBox';
 import Explosion from './Explosion';
 import Roses from './Roses';

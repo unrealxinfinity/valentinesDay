@@ -6,8 +6,7 @@ export default function Roses({animate=null}){
     const [preloadedImages,setPreloadedImages] = useState([]);
     const [finalRoses,setRoses] = useState([]);
     const numRoses = 52.0;
-    const baseRangeX = [-window.innerWidth/2,window.innerWidth];
-    const baseRangeY = [-window.innerHeight,0];
+    
     function randRange(min,max){
         return Math.random() * (max - min) + min
     }
@@ -35,6 +34,8 @@ export default function Roses({animate=null}){
         if(animate && preloadedImages.length>0){
             const roses = []
             for (let i=0 ;i<numRoses;i++){
+                const baseRangeX = [-window.innerWidth/2,window.innerWidth];
+                const baseRangeY = [-window.innerHeight,0];
                 const pos={
                     x:randRange(baseRangeX[0],baseRangeX[1]),
                     y:randRange(baseRangeY[0],baseRangeY[1])
@@ -49,7 +50,7 @@ export default function Roses({animate=null}){
             }
             setRoses(roses)
         }
-    },[animate,preloadedImages])
+    },[animate,preloadedImages,numRoses])
 
     return finalRoses.map((rose,index)=>{
         return <Rose key={'rose'+ index} animate={animate} position={rose.position} delay={rose.delay} image={rose.image}/>

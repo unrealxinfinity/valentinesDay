@@ -15,31 +15,20 @@ import Particle11 from "../assets/explosionParticles/particle11.jpg";
 
 export default function Explosion({explode=false,anchorRef=null}){
     const numParticles=8;
-    const baseRangeX = [-5,5];
-    const baseRangeY = [-1,2];
-    const availableAngleRange =[Math.PI/6,Math.PI-Math.PI/6]   ;
-    const maxDelay = 5000 //ms
-    const particleImages = [Particle1,Particle2,Particle3,Particle4,Particle5,Particle6,Particle7,Particle8,Particle9,Particle10,Particle11]
+    
     const [preloadedImages, setPreloadedImages] = useState([]);
 
     const [canvasRef,contextRef] =useCanvas();
     const [particles, setParticles] = useState([]);
     const [animateParticles,setAnimateParticles] = useState(false);
-    function getPositionOfAnchor(){
-        const rect = anchorRef.current.getBoundingClientRect();
-        const center = {
-            x:(window.innerWidth-(rect.left+rect.right))/2,
-            y:(rect.top - rect.bottom)/2,
-        }
-        return center
-    }
+    
     function randRange(min,max){
         return Math.random() * (max - min) + min
     }
 
     //initialize explosion
     useEffect(()=>{
-
+        const particleImages = [Particle1,Particle2,Particle3,Particle4,Particle5,Particle6,Particle7,Particle8,Particle9,Particle10,Particle11];
         const loadImages = async () => {
             const loadedImages = await Promise.all(particleImages.map(src => {
                 return new Promise((resolve) => {
@@ -53,6 +42,18 @@ export default function Explosion({explode=false,anchorRef=null}){
         loadImages();
     },[])
     useEffect(()=>{
+        const baseRangeX = [-5,5];
+        const baseRangeY = [-1,2];
+        const availableAngleRange =[Math.PI/6,Math.PI-Math.PI/6]   ;
+        const maxDelay = 5000 //ms
+        function getPositionOfAnchor(){
+            const rect = anchorRef.current.getBoundingClientRect();
+            const center = {
+                x:(window.innerWidth-(rect.left+rect.right))/2,
+                y:(rect.top - rect.bottom)/2,
+            }
+            return center
+        }
         if(explode && preloadedImages.length>0){
             const particles = [];
             for (let i=0;i<numParticles;i++){
@@ -83,7 +84,7 @@ export default function Explosion({explode=false,anchorRef=null}){
             setAnimateParticles(true)
         }
         
-    },[explode,preloadedImages])
+    },[explode,preloadedImages,numParticles,anchorRef])
     
     return (
         <div>
