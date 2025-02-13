@@ -3,6 +3,7 @@ import { useState,useRef} from 'react';
 import AnimatedCuteBox from './AnimatedCuteBox';
 import Explosion from './Explosion';
 import Roses from './Roses';
+import CustomMusic from './Music';
 export default function CuteBox ({States=null,dispatch=null,Actions=null,Macros=null}){
     const [animated,setAnimated] = useState(false)
     const AnimatedCuteBoxRef = useRef(null);
@@ -29,6 +30,7 @@ export default function CuteBox ({States=null,dispatch=null,Actions=null,Macros=
                         <AnimatedCuteBox animated={animated} setAnimated={setAnimated } anchorRef={AnimatedCuteBoxRef} />
                         <Explosion explode={animated} anchorRef={AnimatedCuteBoxRef} />
                         <Roses animate={animated}/>
+                        <CustomMusic animate={animated}/>
                     </div>
                 )
             default:
