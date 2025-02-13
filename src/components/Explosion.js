@@ -20,6 +20,8 @@ export default function Explosion({explode=false,anchorRef=null}){
     const availableAngleRange =[Math.PI/6,Math.PI-Math.PI/6]   ;
     const maxDelay = 5000 //ms
     const particleImages = [Particle1,Particle2,Particle3,Particle4,Particle5,Particle6,Particle7,Particle8,Particle9,Particle10,Particle11]
+    const [preloadedImages, setPreloadedImages] = useState([]);
+
     const [canvasRef,contextRef] =useCanvas();
     const [particles, setParticles] = useState([]);
     const [animateParticles,setAnimateParticles] = useState(false);
@@ -37,38 +39,51 @@ export default function Explosion({explode=false,anchorRef=null}){
 
     //initialize explosion
     useEffect(()=>{
-        const particles = [];
-        for (let i=0;i<numParticles;i++){
-            const posOffset = {
-                x:randRange(baseRangeX[0],baseRangeX[1]),
-                y:randRange(baseRangeY[0],baseRangeY[1])
-            }
-            const center = getPositionOfAnchor();
-            const pos = {
-                x:center.x+posOffset.x,
-                y:center.y+posOffset.y
-            }
-            const angle = randRange(availableAngleRange[0],availableAngleRange[1])
-            const direction = {
-                x:Math.cos(angle),
-                y:-Math.sin(angle)
-            }
-            const delay = randRange(0,maxDelay)
-            particles.push({
-                position: pos,
-                direction: direction,
-                delay: delay,
-                image: particleImages[i],
-                anchorPoint: center
-              });        
-        }
-        setParticles(particles)
+
+        const loadImages = async () => {
+            const loadedImages = await Promise.all(particleImages.map(src => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.src = src;
+                    img.onload = () => resolve(img);
+                });
+            }));
+            setPreloadedImages(loadedImages);
+        };
+        loadImages();
     },[])
     useEffect(()=>{
-        if(explode){
+        if(explode && preloadedImages.length>0){
+            const particles = [];
+            for (let i=0;i<numParticles;i++){
+                const posOffset = {
+                    x:randRange(baseRangeX[0],baseRangeX[1]),
+                    y:randRange(baseRangeY[0],baseRangeY[1])
+                }
+                const center = getPositionOfAnchor();
+                const pos = {
+                    x:center.x+posOffset.x,
+                    y:center.y+posOffset.y
+                }
+                const angle = randRange(availableAngleRange[0],availableAngleRange[1])
+                const direction = {
+                    x:Math.cos(angle),
+                    y:-Math.sin(angle)
+                }
+                const delay = randRange(0,maxDelay)
+                particles.push({
+                    position: pos,
+                    direction: direction,
+                    delay: delay,
+                    image: preloadedImages[i],
+                    anchorPoint: center
+                });        
+            }
+            setParticles(particles)
             setAnimateParticles(true)
         }
-    },[explode])
+        
+    },[explode,preloadedImages])
     
     return (
         <div>
@@ -83,7 +98,7 @@ export default function Explosion({explode=false,anchorRef=null}){
                 context={contextRef}
                 anchorPoint={particle.anchorPoint}
                 delay={particle.delay}
-                image={particle.image}
+                image={particle.image.src}
                 />
           ))}
         </div>

@@ -2,6 +2,7 @@ import Box0 from '../assets/giftbox0.png';
 import { useState,useEffect,useRef} from 'react';
 import AnimatedCuteBox from './AnimatedCuteBox';
 import Explosion from './Explosion';
+import Roses from './Roses';
 export default function CuteBox ({States=null,dispatch=null,Actions=null,Macros=null}){
     const [animated,setAnimated] = useState(false)
     const AnimatedCuteBoxRef = useRef(null);
@@ -27,6 +28,7 @@ export default function CuteBox ({States=null,dispatch=null,Actions=null,Macros=
                     <div className="box bigger" key={'boxbigger'}>
                         <AnimatedCuteBox animated={animated} setAnimated={setAnimated } anchorRef={AnimatedCuteBoxRef} />
                         <Explosion explode={animated} anchorRef={AnimatedCuteBoxRef} />
+                        <Roses animate={animated}/>
                     </div>
                 )
             default:
