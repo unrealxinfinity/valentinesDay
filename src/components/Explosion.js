@@ -14,10 +14,10 @@ import Particle10 from "../assets/explosionParticles/particle10.jpg";
 import Particle11 from "../assets/explosionParticles/particle11.jpg";
 
 export default function Explosion({explode=false,anchorRef=null}){
-    const numParticles=7;
+    const numParticles=8;
     const baseRangeX = [-5,5];
     const baseRangeY = [-1,2];
-    const availableAngleRange =[0,Math.PI];
+    const availableAngleRange =[Math.PI/6,Math.PI-Math.PI/6]   ;
     const maxDelay = 5000 //ms
     const particleImages = [Particle1,Particle2,Particle3,Particle4,Particle5,Particle6,Particle7,Particle8,Particle9,Particle10,Particle11]
     const [canvasRef,contextRef] =useCanvas();
@@ -61,11 +61,9 @@ export default function Explosion({explode=false,anchorRef=null}){
                 image: particleImages[i],
                 anchorPoint: center
               });        
-            console.log(particles)
         }
         setParticles(particles)
     },[])
-    //explosion cleanup
     useEffect(()=>{
         if(explode){
             setAnimateParticles(true)

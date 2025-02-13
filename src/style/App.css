@@ -80,6 +80,7 @@
   position: fixed;
   width: 10vw;
   height: 10vw;
+  display: none;
 }
 .particles img{
   width: 100%;

@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect,useRef, useState } from "react";
 
 function isScreenMaxWidth(maxWidth) {
     return window.matchMedia(`(max-width: ${maxWidth}px)`).matches;
   }
 export default function Particle({ animate = false, setAnimateParticles = null, position = null, direction = null, canvas = null, context = null, anchorPoint = null, delay = 0, image = null }) {
   let speed = 100;
-  let gravity = 9.8;
+  let gravity = 9;
+  let particleRef = useRef(null);
+
   if(isScreenMaxWidth(600)){
     speed = 35;
     gravity = 5;
@@ -35,11 +37,11 @@ export default function Particle({ animate = false, setAnimateParticles = null, 
   // Handle animation
   useEffect(() => {
     if (animate) {
+      particleRef.current.style.display = "block";
       const interval = setInterval(() => {
         const deltaTime = (Date.now() - time) / 1000;
         const newPos = calculateNewPosition(deltaTime);
         setPos(newPos);
-        
       }, 1000 / 30);
       if (pos.y > window.innerHeight) {
         clearInterval(interval);
@@ -50,7 +52,7 @@ export default function Particle({ animate = false, setAnimateParticles = null, 
   
 
   return (
-    <div className="particles" style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}>
+    <div className="particles" style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }} ref={particleRef}>
       <img src={image} alt="me and my gf" />
     </div>
   );
