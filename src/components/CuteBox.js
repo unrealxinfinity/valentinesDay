@@ -25,7 +25,8 @@ export default function CuteBox ({States=null,dispatch=null,Actions=null,Macros=
             case 2:
                 return (
                     <div className="box bigger" key={'boxbigger'}>
-                        <AnimatedCuteBox animated={animated} setAnimated={setAnimated} />
+                        <AnimatedCuteBox animated={animated} setAnimated={setAnimated } anchorRef={AnimatedCuteBoxRef} />
+                        {animated?<Explosion explode={animated} anchorRef={AnimatedCuteBoxRef} />:null}
                     </div>
                 )
             default:

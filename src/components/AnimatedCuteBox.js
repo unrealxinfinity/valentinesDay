@@ -4,7 +4,7 @@ import Box2 from '../assets/giftbox2.png';
 import Box3 from '../assets/giftbox3.png';
 import { useState,useEffect,useRef} from 'react';
 const timePerFrame = 1000/4 //ms
-export default function AnimatedCuteBox({animated=null,setAnimated=null}){
+export default function AnimatedCuteBox({animated=null,setAnimated=null ,anchorRef=null}){
     const [currSprite,setCurrSprite] = useState(0);
     const intervalEvent = useRef(null);
     const sprites = [Box0,Box1,Box2,Box3]
@@ -17,7 +17,7 @@ export default function AnimatedCuteBox({animated=null,setAnimated=null}){
           });
         }, timePerFrame);
       };
-      
+
       useEffect(()=>{
         if (currSprite >= sprites.length - 1) {
             clearInterval(intervalEvent.current);
@@ -32,6 +32,6 @@ export default function AnimatedCuteBox({animated=null,setAnimated=null}){
           }
         };
       }, []);
-
-    return <img src={sprites[currSprite]} alt="A gift box" />
+    
+    return <img src={sprites[currSprite]} alt="A gift box" ref={anchorRef}/>
 }

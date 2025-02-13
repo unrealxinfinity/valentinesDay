@@ -4,6 +4,7 @@ import Cinnamonroll from '../assets/cinnamonroll.mp4';
 import { useReducer } from 'react';
 import TextBox from './TextBox.js'
 import CuteBox from './CuteBox.js';
+import { useCanvas,CanvasProvider } from './hooks/CanvasContext.js';
 const Macros={
   
 }
@@ -27,9 +28,11 @@ function Main() {
   
   return (
     <div id="main">
-      <video autoPlay loop muted src={Cinnamonroll} className='background'/>
-      <TextBox States={state} dispatch={dispatch} Macros={Macros}/>
-      <CuteBox States={state} dispatch={dispatch} Actions={Actions} Macros={Macros}/>
+      <CanvasProvider>
+        <video autoPlay loop muted src={Cinnamonroll} className='background'/>
+        <TextBox States={state} dispatch={dispatch} Macros={Macros}/>
+        <CuteBox States={state} dispatch={dispatch} Actions={Actions} Macros={Macros}/>
+      </CanvasProvider>
     </div>
   );
 }
