@@ -23,7 +23,7 @@ export default function AnimatedCuteBox({animated=null,setAnimated=null ,anchorR
             clearInterval(intervalEvent.current);
             setAnimated(true);
           }
-      },[currSprite])
+      },[currSprite,sprites.length,setAnimated])
       useEffect(() => {
         animateBox();
         return () => {

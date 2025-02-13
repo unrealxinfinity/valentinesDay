@@ -9,11 +9,11 @@ export default function Particle({ animate = false, setAnimateParticles = null, 
   let particleRef = useRef(null);
 
   if(isScreenMaxWidth(600)){
-    speed = 35;
+    speed = 45;
     gravity = 5;
   }
   else if(isScreenMaxWidth(400)){
-    speed = 20;
+    speed = 30;
     gravity = 2;
   }
   const [initPos, setInitPos] = useState(null);

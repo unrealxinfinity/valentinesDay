@@ -40,7 +40,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 3em;
+  font-size: 2em;
+  margin-bottom: 2em;
   
 }
 .boxText p{

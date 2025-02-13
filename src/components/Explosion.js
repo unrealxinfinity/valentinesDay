@@ -44,7 +44,7 @@ export default function Explosion({explode=false,anchorRef=null}){
     useEffect(()=>{
         const baseRangeX = [-5,5];
         const baseRangeY = [-1,2];
-        const availableAngleRange =[Math.PI/6,Math.PI-Math.PI/6]   ;
+        const availableAngleRange =[Math.PI/4,Math.PI-Math.PI/4]   ;
         const maxDelay = 5000 //ms
         function getPositionOfAnchor(){
             const rect = anchorRef.current.getBoundingClientRect();
