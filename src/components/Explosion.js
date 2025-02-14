@@ -87,6 +87,7 @@ export default function Explosion({explode=false,anchorRef=null}){
     },[explode,preloadedImages,numParticles,anchorRef])
     
     return (
+        particles.length>0?
         <div>
             {particles.map((particle, index) => (
                 <Particle
@@ -103,6 +104,6 @@ export default function Explosion({explode=false,anchorRef=null}){
                 />
           ))}
         </div>
-        
+        :null        
     )
 }

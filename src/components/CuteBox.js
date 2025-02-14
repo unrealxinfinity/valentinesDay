@@ -28,8 +28,6 @@ export default function CuteBox ({States=null,dispatch=null,Actions=null,Macros=
                 return (
                     <div className="box bigger" key={'boxbigger'}>
                         <AnimatedCuteBox animated={animated} setAnimated={setAnimated } anchorRef={AnimatedCuteBoxRef} />
-                        <Explosion explode={animated} anchorRef={AnimatedCuteBoxRef} />
-                        <Roses animate={animated}/>
                         <CustomMusic animate={animated}/>
                     </div>
                 )
@@ -38,5 +36,11 @@ export default function CuteBox ({States=null,dispatch=null,Actions=null,Macros=
         }
     }
 
-    return determineBoxStateElem(States)
+    return (
+        <div className='center'>
+            <Explosion explode={animated} anchorRef={AnimatedCuteBoxRef} />
+            <Roses animate={animated}/>
+            {determineBoxStateElem(States)}
+        </div>
+    )
 }

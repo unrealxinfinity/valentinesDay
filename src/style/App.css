@@ -12,6 +12,13 @@
     z-index: 1; 
 
 }
+.center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+}
 #canvas{
   background-color: rgba(0, 0, 0, 0);
   position: fixed;
@@ -93,6 +100,10 @@
   position: fixed;
   width: 5vw;
   height: 5vw;
+  transition: display 0.5s ease-in;
+  display: none;
+}
+.roses.animate{
   animation: fade-in 0.5s ease-in forwards;
 }
 .roses img{

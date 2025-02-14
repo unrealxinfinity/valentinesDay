@@ -22,6 +22,8 @@ export default function Rose({ animate = null, position = null, delay = null, im
 
     useEffect(() => {
         if (animate) {
+            roseRef.current.classList.add("animate");
+            roseRef.current.style.display = "block";
             timeoutEvent.current = setTimeout(() => {
                 initialTimeRef.current = Date.now();
                 intervalEvent.current = setInterval(() => {
@@ -35,7 +37,7 @@ export default function Rose({ animate = null, position = null, delay = null, im
             clearInterval(intervalEvent.current);
             clearTimeout(timeoutEvent.current);
         };
-    }, [animate, delay]);
+    }, [animate, delay,roseRef]);
     return (
         <div className="roses" style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }} ref={roseRef}>
             <img src={image} alt="a rose" />
