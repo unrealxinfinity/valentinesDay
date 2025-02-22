@@ -7,6 +7,20 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+      <link rel='preload' as='image' href='assets/heart.png'/>
+      <link rel='preload' as='image' href='assets/rose.png'/>
+      <link rel='preload' as='image' href='assets/rose.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle1.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle2.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle3.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle4.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle5.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle6.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle7.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle8.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle9.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle10.jpg'/>
+      <link rel='preload' as='image' href='assets/explosionParticles/particle11.jpg'/>
     <Main />
   </React.StrictMode>
 );

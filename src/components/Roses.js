@@ -53,6 +53,10 @@ export default function Roses({animate=null}){
     },[animate,preloadedImages,numRoses])
 
     return finalRoses.map((rose,index)=>{
-        return <Rose key={'rose'+ index} animate={animate} position={rose.position} delay={rose.delay} image={rose.image}/>
-    })
+        return (
+                <div>   
+                        <Rose key={'rose'+ index} animate={animate} position={rose.position} delay={rose.delay} image={rose.image}/>
+                </div>
+            )
+        })
 }
